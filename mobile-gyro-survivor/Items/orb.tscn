@@ -2,6 +2,9 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_on5ki"]
 albedo_color = Color(0.112853, 0.92, 0.0552, 1)
+emission_enabled = true
+emission = Color(0.667854, 0.652874, 0.625305, 1)
+emission_intensity = 52485.1
 
 [node name="Orb" type="CSGSphere3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.165, 0)

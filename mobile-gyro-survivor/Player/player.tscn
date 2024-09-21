@@ -21,4 +21,5 @@ mesh = SubResource("CapsuleMesh_0uqll")
 surface_material_override/0 = SubResource("StandardMaterial3D_qxip8")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 10, 10)
+transform = Transform3D(1, 0, 0, 0, 0.474088, 0.880478, 0, -0.880478, 0.474088, 0, 10, 6)
+fov = 120.0

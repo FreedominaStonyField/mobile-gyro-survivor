@@ -1,11 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://dn7fgtep6iuhl"]
+[gd_scene load_steps=11 format=3 uid="uid://dn7fgtep6iuhl"]
 
 [ext_resource type="PackedScene" uid="uid://dcma1m47ndxra" path="res://Player/player.tscn" id="1_si2ep"]
+[ext_resource type="Texture2D" uid="uid://y384inljd2cu" path="res://addons/godot-prototype-texture/PNG/grid_orange_512x512.png" id="1_xi0bo"]
+[ext_resource type="PackedScene" uid="uid://dtt71m3x5a2xi" path="res://Items/orb.tscn" id="2_jfpu3"]
 [ext_resource type="Script" path="res://random_object_placer.gd" id="2_smbae"]
+[ext_resource type="PackedScene" uid="uid://c5346tb6lhcjr" path="res://Items/street_light.tscn" id="3_kyper"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mncto"]
-sky_top_color = Color(0.144816, 0.620167, 1, 1)
-sky_horizon_color = Color(0.614381, 0.736607, 0.838072, 1)
+sky_top_color = Color(0, 0.0117985, 0.0369872, 1)
+sky_horizon_color = Color(0.0369958, 0.0500586, 0.0561953, 1)
 ground_bottom_color = Color(0.312708, 0.326259, 0.352288, 1)
 ground_horizon_color = Color(0.614381, 0.736607, 0.838072, 1)
 
@@ -19,18 +22,20 @@ sky = SubResource("Sky_tp1rt")
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_i1yvu"]
 
 [sub_resource type="ORMMaterial3D" id="ORMMaterial3D_iq1dq"]
-albedo_color = Color(0.462291, 0.462291, 0.462291, 1)
+albedo_texture = ExtResource("1_xi0bo")
+uv1_triplanar = true
 
 [node name="main" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.95424, -0.208481, 0.214385, 0, 0.716911, 0.697165, -0.299041, 0.665263, -0.684105, 0, 0, 0)
+light_intensity_lux = 2184.97
+light_temperature = 5500.0
+shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_wonsj")
 camera_attributes = SubResource("CameraAttributesPractical_i1yvu")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 0, 0, 0)
-light_intensity_lux = 0.32
-shadow_enabled = true
 
 [node name="floor" type="CSGBox3D" parent="."]
 use_collision = true
@@ -39,15 +44,19 @@ material = SubResource("ORMMaterial3D_iq1dq")
 
 [node name="Player" parent="." instance=ExtResource("1_si2ep")]
 
-[node name="RandomObjectPlacer" type="Node" parent="."]
+[node name="Orb" parent="." instance=ExtResource("2_jfpu3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.31439, 0.741978, 0)
+
+[node name="RandomObjectPlacer" type="Node" parent="." node_paths=PackedStringArray("Item")]
 script = ExtResource("2_smbae")
+Item = NodePath("../Orb")
+item_range = 1000.0
+number_of_items = 9999
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.01147, 4, -1.15854)
-size = Vector3(5.02295, 1, 7.18207)
+[node name="RandomLightPlacer" type="Node" parent="." node_paths=PackedStringArray("Item")]
+script = ExtResource("2_smbae")
+Item = NodePath("../Street Light")
+item_range = 1000.0
+number_of_items = 8
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.27259, 2.91278, 0)
-visible = false
-light_intensity_lumens = 100000.0
-shadow_enabled = true
+[node name="Street Light" parent="." instance=ExtResource("3_kyper")]

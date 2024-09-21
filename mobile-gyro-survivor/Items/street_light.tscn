@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://c5346tb6lhcjr"]
+
+[node name="Street Light" type="OmniLight3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -2.27259, 7.00433, 0)
+light_intensity_lumens = 1e+06
+shadow_enabled = true
+omni_range = 10.0773
