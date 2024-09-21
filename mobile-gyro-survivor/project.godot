@@ -24,3 +24,4 @@ version_control/autoload_on_startup=true
 
 renderer/rendering_method="mobile"
 textures/vram_compression/import_etc2_astc=true
+lights_and_shadows/use_physical_light_units=true
